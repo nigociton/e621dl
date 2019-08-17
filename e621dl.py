@@ -75,7 +75,7 @@ if __name__ == '__main__':
 
             # Sets up a loop that will continue indefinitely until the last post of a search has been found.
             while True:
-                print("[i] Getting posts...")
+                print("[i] Getting posts... ({})".format(search['directory']))
                 results = remote.get_posts(search_string, search['earliest_date'], last_id, session)
 
                 # Gets the id of the last post found in the search so that the search can continue.
