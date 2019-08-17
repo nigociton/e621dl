@@ -54,5 +54,6 @@ dist/
 
 # Repo Specific
 downloads/
+downloads
 build.bat
 *config.*
