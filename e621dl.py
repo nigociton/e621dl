@@ -57,7 +57,7 @@ if __name__ == '__main__':
 
             # Append the final values that will be used for the specific section to the list of searches.
             # Note section_tags is a list within a list.
-            searches.append({'directory': key, 'tags': section_tags, 'ratings': section_ratings, 'min_score': section_score, 'min_favs': section_favs, 'earliest_date': section_date})
+            searches.append({'directory': key, 'tags': section_tags, 'ratings': section_ratings, 'min_score': section_score, 'min_favs': section_favs, 'earliest_date': section_date, 'downloads': 0, 'last_id_downloaded'})
 
         for search in searches:
             print('')
@@ -86,8 +86,6 @@ if __name__ == '__main__':
                 else:
                     last_id = results[-1]['id']
 
-                search['downloads'] = 0
-                search['last_id'] = 0
                 for post in results:
                     if include_md5:
                         path = local.make_path(search['directory'], f"{post['id']}.{post['md5']}", post['file_ext'])
@@ -111,7 +109,7 @@ if __name__ == '__main__':
                         print(f"[✓] Post {post['id']} is being downloaded.")
                         remote.download_post(post['file_url'], path, session)
                         search['downloads'] += 1
-                        search['last_id'] = post['id']
+                        search['last_id_downloaded'] = post['id']
 
                 # Break while loop. End program.
                 if last_id == 0:
@@ -123,7 +121,7 @@ if __name__ == '__main__':
     for search in searches:
         if search['downloads'] > 0:
             print(f"[L] {search['directory']}: {search['downloads']} files downloaded. " +
-                    f"The oldest new id is {search['last_id']}.")
+                    f"The oldest new id is {search['last_id_downloaded']}.")
         else:
             print(f"[L] {search['directory']}: No files downloaded.")
     # End program.
