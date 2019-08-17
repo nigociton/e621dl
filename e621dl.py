@@ -57,7 +57,7 @@ if __name__ == '__main__':
 
             # Append the final values that will be used for the specific section to the list of searches.
             # Note section_tags is a list within a list.
-            searches.append({'directory': key, 'tags': section_tags, 'ratings': section_ratings, 'min_score': section_score, 'min_favs': section_favs, 'earliest_date': section_date, 'downloads': 0, 'last_id_downloaded'})
+            searches.append({'directory': key, 'tags': section_tags, 'ratings': section_ratings, 'min_score': section_score, 'min_favs': section_favs, 'earliest_date': section_date, 'downloads': 0, 'last_id_downloaded': 0})
 
         for search in searches:
             print('')
