@@ -86,6 +86,8 @@ if __name__ == '__main__':
                 else:
                     last_id = results[-1]['id']
 
+                search['downloads'] = 0
+                search['last_id'] = 0
                 for post in results:
                     if include_md5:
                         path = local.make_path(search['directory'], f"{post['id']}.{post['md5']}", post['file_ext'])
@@ -108,11 +110,18 @@ if __name__ == '__main__':
                     else:
                         print(f"[✓] Post {post['id']} is being downloaded.")
                         remote.download_post(post['file_url'], path, session)
+                        search['downloads'] += 1
+                        search['last_id'] = post['id']
 
                 # Break while loop. End program.
                 if last_id == 0:
                     break
 
+    # Print Log
+    print('')
+    print("[i] Log:")
+    for search in searches:
+        print(f"[L] {search['directory']}: {search['downloads']} files downloaded. The oldest new id is {search['last_id']}.")
     # End program.
     print('')
     input("[✓] All searches complete. Press ENTER to exit...")
