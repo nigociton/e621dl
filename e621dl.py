@@ -125,7 +125,7 @@ if __name__ == '__main__':
             print(f"[L] {search['directory']}: {search['downloads']} files downloaded. " +
                     f"The oldest new id is {search['last_id']}.")
         else:
-            printf(f"[L] {search['directory']}: No files downloaded.")
+            print(f"[L] {search['directory']}: No files downloaded.")
     # End program.
     print('')
     input("[✓] All searches complete. Press ENTER to exit...")
